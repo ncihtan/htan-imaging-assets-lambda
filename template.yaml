@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Hello World lambda
+  HTAN imaging asset mapping lambda function
 
 Metadata:
   AWS::ServerlessRepo::Application:
-    Name: "lambda-template"
-    Description: "A GH template for quickly starting a new AWS lambda project."
+    Name: "htan-imaging-asset-mapping"
+    Description: "A AWS Lambda application that prepares a current mapping file for the HTAN portal based on s3 inventory"
     Author: "Sage-Bionetworks"
     SpdxLicenseId: "Apache-2.0"
     # paths are relative to .aws-sam/build directory
@@ -27,7 +27,7 @@ Resources:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: .
-      Handler: hello_world/app.lambda_handler
+      Handler: inventory_query/app.lambda_handler
       Runtime: python3.12
       Role: !GetAtt FunctionRole.Arn
       Events:
