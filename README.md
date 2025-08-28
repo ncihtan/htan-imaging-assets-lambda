@@ -1,11 +1,18 @@
-# lambda-template
-A GitHub template for quickly starting a new AWS lambda project.
+# HTAN Imaging Assets Lambda
 
-## Naming
-Naming conventions:
-* for a vanilla Lambda: `lambda-<context>`
-* for a Cloudformation Transform macro: `cfn-macro-<context>`
-* for a Cloudformation Custom Resource: `cfn-cr-<context>`
+An AWS Lambda function that processes S3 inventory data to create a mapping file for HTAN (Human Tumor Atlas Network) imaging assets, providing current URLs for Minerva visualizations and thumbnails.
+
+## Overview
+
+This Lambda function performs the following tasks:
+
+1. **S3 Inventory Processing**: Queries S3 inventory data using AWS Athena to identify HTAN imaging assets stored in the `htan-assets` bucket
+2. **Asset Mapping**: Creates associations between Synapse IDs and their corresponding:
+   - Minerva visualization URLs (index.html files)
+   - Thumbnail image URLs
+3. **JSON Output Generation**: Produces a consolidated JSON file (`htan-imaging-assets-latest.json`) containing the latest asset mappings for consumption by the HTAN portal
+
+The function automatically processes yesterday's inventory data and outputs the results to `s3://htan-assets/inventory/final-output/` for use by downstream applications.
 
 ## Development
 
